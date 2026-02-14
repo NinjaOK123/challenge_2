@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tết Bính Ngọ 2026 - Rút Quẻ Đầu Năm</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Dancing+Script:wght@700&family=Pinyon+Script&family=Noto+Serif+SC:wght@700&family=Montserrat:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --tet-red: #D40000;
+            --tet-gold: #FFD700;
+            --gold-strong: #ffb703;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #7b0000;
+            overflow-x: hidden;
+        }
+
+        .font-sigka {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .font-accent {
+            font-family: 'Pinyon Script', cursive;
+        }
+
+        .font-chinese {
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .font-montserrat {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .bg-red-gradient {
+            background: linear-gradient(135deg, #9b0000 0%, #D40000 50%, #9b0000 100%);
+        }
+
+        .text-gold {
+            color: var(--tet-gold);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .petal {
+            position: fixed;
+            top: -10px;
+            z-index: 9999;
+            pointer-events: none;
+            border-radius: 50% 0 50% 50%;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .modal-enter {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Wood texture effect */
+        .wood-texture {
+            background: repeating-linear-gradient(90deg, #8B4513, #A0522D 10px, #8B4513 20px);
+            box-shadow: inset 10px 0 20px rgba(0, 0, 0, 0.5), inset -10px 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .shake-hard {
+            animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) both infinite;
+        }
+
+        @keyframes shake {
+
+            10%,
+            90% {
+                transform: translate3d(-2px, 0, 0) rotate(-1deg);
+            }
+
+            20%,
+            80% {
+                transform: translate3d(4px, 0, 0) rotate(2deg);
+            }
+
+            30%,
+            50%,
+            70% {
+                transform: translate3d(-8px, 0, 0) rotate(-4deg);
+            }
+
+            40%,
+            60% {
+                transform: translate3d(8px, 0, 0) rotate(4deg);
+            }
+        }
+
+        /* Music Player Animation */
+        .music-spin {
+            animation: spin-record 3s linear infinite;
+        }
+
+        .music-paused {
+            animation-play-state: paused;
+        }
+
+        @keyframes spin-record {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Tech Tarot Card CSS from mission2-main */
+        .card-stage {
+            perspective: 1400px;
+            width: 300px;
+            height: 480px;
+            /* Reduced specific size for integration */
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .card-container {
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            animation: floatIdle 3.5s ease-in-out infinite;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+            transform-style: preserve-3d;
+            border-radius: 18px;
+        }
+
+        .card-inner.is-flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 5px solid var(--gold-strong);
+            background-color: white;
+        }
+
+        .card-back {
+            background:
+                radial-gradient(circle at center, rgba(255, 209, 102, 0.22), rgba(0, 0, 0, 0) 60%),
+                linear-gradient(135deg, #b30f1b 0%, #7a0d14 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-front {
+            transform: rotateY(180deg);
+        }
+
+        .card-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-back img {
+            width: 80%;
+            height: auto;
+        }
+
+        @keyframes floatIdle {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .mystic-flash {
+            position: absolute;
+            inset: -40px;
+            pointer-events: none;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 242, 183, 0.85) 0%, rgba(255, 213, 102, 0.34) 30%, rgba(255, 212, 102, 0) 68%);
+            opacity: 0;
+            transform: scale(0.35);
+            z-index: 7;
+        }
+
+        .mystic-flash.active {
+            animation: mysticFlash 0.85s ease-out forwards;
+        }
+
+        @keyframes mysticFlash {
+            0% {
+                opacity: 0;
+                transform: scale(0.25);
+            }
+
+            18% {
+                opacity: 1;
+            }
+
+            70% {
+                opacity: 0.35;
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(1.18);
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #5a0000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--tet-gold);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body class="text-white overflow-x-hidden">
+
+    <div id="petal-container"></div>
+
+    <!-- Music Player Control -->
+    <div class="fixed bottom-6 left-6 z-[100] flex items-center gap-3">
+        <button id="music-btn" onclick="toggleMusic()"
+            class="relative group bg-yellow-500 w-14 h-14 rounded-full border-4 border-red-800 shadow-2xl flex items-center justify-center cursor-pointer hover:scale-110 transition-transform duration-300">
+            <div id="music-disc"
+                class="absolute inset-0 rounded-full border-2 border-dashed border-red-900/50 music-spin music-paused">
+            </div>
+            <span id="music-icon" class="text-2xl z-10">🔇</span>
+        </button>
+        <div
+            class="bg-black/50 backdrop-blur px-3 py-1 rounded-full text-xs text-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
+            Nhạc Tết 2026
+        </div>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="assets/audio/GieoQue.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Header -->
+    <nav class="fixed w-full z-50 bg-black/30 backdrop-blur-md border-b border-yellow-600/30">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-sigka text-yellow-400">Tết 2026</div>
+            <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest font-medium">
+                <a href="#home" class="hover:text-yellow-400 transition">Trang Chủ</a>
+                <a href="#wishes" class="hover:text-yellow-400 transition">Lời Chúc</a>
+                <a href="#tech-fortune" class="hover:text-yellow-400 transition">Gieo Quẻ Công Nghệ</a>
+                <a href="#traditional-fortune" class="hover:text-yellow-400 transition">Xin Xăm Truyền Thống</a>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="window.location.href='#tech-fortune'"
+                    class="bg-yellow-500 text-red-900 px-4 py-2 rounded-full font-bold text-sm hover:bg-yellow-400 transition shadow-lg">
+                    XIN QUẺ
+                </button>
+                <button onclick="window.location.href='#traditional-fortune'"
+                    class="bg-red-600 text-yellow-400 border border-yellow-400 px-4 py-2 rounded-full font-bold text-sm hover:bg-red-700 transition shadow-lg">
+                    XIN XĂM
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-20 px-4 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-black/40"></div>
+            <!-- Background from mission2-main used here for consistency if desired, or keep tet2026 one -->
+            <img src="assets/tarot/background-tet.png" alt="Tet Background" class="w-full h-full object-cover">
+        </div>
+        <div class="relative z-10 text-center space-y-8 max-w-4xl">
+            <h1 class="text-6xl md:text-9xl font-sigka text-gold leading-tight animate-pulse">Tết Bính Ngọ</h1>
+            <h2 class="text-4xl md:text-6xl font-bold tracking-[0.2em] -mt-4 text-white drop-shadow-lg">2026</h2>
+
+            <div id="countdown" class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 text-white">
+                <div class="bg-white/10 backdrop-blur-lg p-4 rounded-2xl border border-yellow-500/30">
+                    <div id="days" class="text-4xl md:text-5xl font-bold text-yellow-400">00</div>
+                    <div class="text-xs uppercase tracking-widest mt-1 opacity-70">Ngày</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-lg p-4 rounded-2xl border border-yellow-500/30">
+                    <div id="hours" class="text-4xl md:text-5xl font-bold text-yellow-400">00</div>
+                    <div class="text-xs uppercase tracking-widest mt-1 opacity-70">Giờ</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-lg p-4 rounded-2xl border border-yellow-500/30">
+                    <div id="minutes" class="text-4xl md:text-5xl font-bold text-yellow-400">00</div>
+                    <div class="text-xs uppercase tracking-widest mt-1 opacity-70">Phút</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-lg p-4 rounded-2xl border border-yellow-500/30">
+                    <div id="seconds" class="text-4xl md:text-5xl font-bold text-yellow-400">00</div>
+                    <div class="text-xs uppercase tracking-widest mt-1 opacity-70">Giây</div>
+                </div>
+            </div>
+
+            <!-- Sponsor Logos (Moved to bottom) -->
+            <div class="flex flex-col items-center gap-2 mt-8 animate-fade-in-up delay-200">
+                <span class="text-white/60 text-xs uppercase tracking-widest">Đồng hành cùng</span>
+                <div
+                    class="flex justify-center items-center gap-4 bg-white/10 backdrop-blur-md px-6 py-3 rounded-full border border-white/20">
+                    <img src="assets/tarot/trailblazer.webp" alt="Trailblazer"
+                        class="h-8 md:h-10 w-auto object-contain">
+                    <div class="w-px h-6 bg-white/30"></div>
+                    <img src="assets/tarot/TeamGoogle_GoogleStudentAmbassadors.webp" alt="Team Google"
+                        class="h-8 md:h-10 w-auto object-contain">
+                    <div class="w-px h-6 bg-white/30"></div>
+                    <img src="assets/tarot/logogsa.avif" alt="GSA" class="h-8 md:h-10 w-auto object-contain">
+                    <div class="w-px h-6 bg-white/30"></div>
+                    <img src="assets/tarot/logo_AGU.png" alt="AGU" class="h-8 md:h-10 w-auto object-contain">
+                </div>
+            </div>
+            <p class="font-accent text-3xl text-yellow-200 opacity-80 pt-6">Cùng gieo quẻ đầu năm - Rước lộc về nhà</p>
+        </div>
+    </section>
+
+    <!-- New Year Wishes Section -->
+    <section id="wishes" class="py-24 bg-[#5a0000] px-6 border-y border-yellow-500/20">
+        <div class="max-w-7xl mx-auto text-center mb-16">
+            <h3 class="text-5xl font-sigka text-gold mb-4">Lời Chúc Xuân Bính Ngọ</h3>
+            <p class="text-red-200 opacity-80">Gửi trao những lời chúc tốt đẹp nhất cho một năm mới rạng rỡ</p>
+        </div>
+
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+            <div
+                class="bg-red-900/40 p-6 rounded-2xl border border-yellow-600/20 hover:bg-red-800/60 transition group hover:scale-105 duration-300">
+                <p class="text-sm italic leading-relaxed text-yellow-100">"Vạn sự như ý, tỷ sự như mơ, triệu triệu bất
+                    ngờ, không chờ cũng đến."</p>
+            </div>
+            <div
+                class="bg-red-900/40 p-6 rounded-2xl border border-yellow-600/20 hover:bg-red-800/60 transition group hover:scale-105 duration-300">
+                <p class="text-sm italic leading-relaxed text-yellow-100">"Chúc mừng năm mới Bính Ngọ, mã đáo thành
+                    công, vạn dặm bình an."</p>
+            </div>
+            <div
+                class="bg-red-900/40 p-6 rounded-2xl border border-yellow-600/20 hover:bg-red-800/60 transition group hover:scale-105 duration-300">
+                <p class="text-sm italic leading-relaxed text-yellow-100">"Năm mới sung túc, phúc lộc đầy nhà, trẻ già
+                    hạnh phúc, cười vang suốt năm."</p>
+            </div>
+            <div
+                class="bg-red-900/40 p-6 rounded-2xl border border-yellow-600/20 hover:bg-red-800/60 transition group hover:scale-105 duration-300">
+                <p class="text-sm italic leading-relaxed text-yellow-100">"Tiền vào như nước, tiền ra nhỏ giọt, dồi dào
+                    sức khỏe, vạn sự thành công."</p>
+            </div>
+            <div
+                class="bg-red-900/40 p-6 rounded-2xl border border-yellow-600/20 hover:bg-red-800/60 transition group hover:scale-105 duration-300">
+                <p class="text-sm italic leading-relaxed text-yellow-100">"Công việc hanh thông, thăng quan tiến chức,
+                    lộ trình thăng tiến rộng mở."</p>
+            </div>
+            <div
+                class="bg-red-900/40 p-6 rounded-2xl border border-yellow-600/20 hover:bg-red-800/60 transition group hover:scale-105 duration-300">
+                <p class="text-sm italic leading-relaxed text-yellow-100">"Gia đình bình an, hạnh phúc tràn đầy, xuân
+                    sang đắc lộc, ấm êm trọn đời."</p>
+            </div>
+            <div
+                class="bg-red-900/40 p-6 rounded-2xl border border-yellow-600/20 hover:bg-red-800/60 transition group hover:scale-105 duration-300">
+                <p class="text-sm italic leading-relaxed text-yellow-100">"Tống cựu nghênh tân, hỷ khí lâm môn, xuân
+                    khai phú quý, thọ lộc trường tồn."</p>
+            </div>
+            <div
+                class="bg-red-900/40 p-6 rounded-2xl border border-yellow-600/20 hover:bg-red-800/60 transition group hover:scale-105 duration-300">
+                <p class="text-sm italic leading-relaxed text-yellow-100">"Sức khỏe dẻo dai, công việc thuận lợi, thăng
+                    tiến dài dài, tiền xài không hết."</p>
+            </div>
+            <div
+                class="bg-red-900/40 p-6 rounded-2xl border border-yellow-600/20 hover:bg-red-800/60 transition group hover:scale-105 duration-300">
+                <p class="text-sm italic leading-relaxed text-yellow-100">"Nụ cười trên môi, lộc về tận cửa, vạn điều
+                    may mắn, hạnh phúc ngất ngây."</p>
+            </div>
+            <div
+                class="bg-red-900/40 p-6 rounded-2xl border border-yellow-600/20 hover:bg-red-800/60 transition group hover:scale-105 duration-300">
+                <p class="text-sm italic leading-relaxed text-yellow-100">"Chúc mừng năm mới, an khang thịnh vượng, mã
+                    đáo thành công, mọi sự như ý."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Tarot Section (From mission2-main) -->
+    <section id="tech-fortune"
+        class="py-24 bg-red-gradient px-6 min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
+        <div id="tarot-content" class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center p-4">
+
+            <div
+                class="order-2 md:order-1 flex flex-col justify-center items-center md:items-start text-center md:text-left space-y-6">
+                <h3 class="text-4xl md:text-6xl font-sigka text-gold">Gieo Quẻ Công Nghệ</h3>
+                <p class="text-lg text-red-100 font-montserrat">
+                    Tết này "vọc" gì cùng Gemini? Hãy gieo quẻ để nhận thông điệp công nghệ may mắn dành riêng cho bạn.
+                </p>
+
+                <div class="bg-white/10 backdrop-blur-md p-6 rounded-xl border border-yellow-500/30 w-full">
+                    <h2 id="card-name" class="text-2xl font-bold text-yellow-400 mb-2 uppercase tracking-wide">Tên Lá
+                        Bài</h2>
+                    <p id="prediction" class="text-white text-base leading-relaxed">Thông điệp của bạn sẽ xuất hiện ở
+                        đây sau khi gieo quẻ...</p>
+                </div>
+
+                <div class="flex flex-col w-full gap-4 mt-4">
+                    <button onclick="drawTarotCard()" id="draw-btn"
+                        class="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-red-900 px-8 py-4 rounded-xl font-bold text-xl hover:from-yellow-400 hover:to-yellow-500 transition-all shadow-lg transform hover:-translate-y-1 block">
+                        🧧 Gieo Quẻ Ngay
+                    </button>
+
+                    <!-- Result Actions -->
+                    <div id="result-actions" class="hidden flex flex-col gap-3 w-full animate-fade-in-up">
+                        <div class="flex flex-col md:flex-row gap-3">
+                            <button onclick="drawTarotCard()"
+                                class="flex-1 bg-red-800 border border-yellow-500/50 text-yellow-100 px-6 py-3 rounded-xl font-bold text-lg hover:bg-red-700 transition-all shadow-lg flex items-center justify-center gap-2">
+                                🔁 <span class="whitespace-nowrap">Gieo Quẻ Khác</span>
+                            </button>
+                            <button onclick="shareFacebook()"
+                                class="flex-1 bg-yellow-500 text-red-900 px-6 py-3 rounded-xl font-bold text-lg hover:bg-yellow-400 transition-all shadow-lg flex items-center justify-center gap-2">
+                                📢 <span class="whitespace-nowrap">Chia Sẻ Facebook</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-yellow-200/60 text-center italic mt-2">Khi chia sẻ: hệ thống sẽ chụp giao
+                            diện + lá bài hiện tại.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-1 md:order-2 flex justify-center items-center relative h-[500px]">
+                <div class="card-stage">
+                    <div class="mystic-flash" id="mystic-flash"></div>
+                    <div class="card-container" id="card-container">
+                        <div class="card-inner" id="card-inner">
+                            <div class="card-face card-back">
+                                <img src="assets/tarot/back.png" alt="Mặt sau lá quẻ">
+                            </div>
+                            <div class="card-face card-front">
+                                <img id="card-image" src="" alt="Tarot Card">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Traditional Stick Shaking Section (From tet2026-main) -->
+    <section id="traditional-fortune"
+        class="py-24 bg-[#5a0000] px-6 relative overflow-hidden flex flex-col items-center min-h-screen">
+        <div class="max-w-4xl w-full text-center space-y-8">
+            <h3 class="text-5xl font-sigka text-gold">Xin Xăm Truyền Thống</h3>
+            <p class="text-xl text-red-100 font-light">Thành tâm khấn nguyện - Lắc nhẹ tay xin quẻ đầu năm</p>
+
+            <div class="relative flex justify-center items-center h-96 mt-10" id="fortune-container">
+
+                <!-- Ống Xăm Container -->
+                <div id="shaker" class="relative group cursor-pointer" onclick="xinQue()">
+                    <!-- Các thẻ xăm (Sticks) -->
+                    <div
+                        class="absolute -top-16 left-1/2 -translate-x-1/2 w-32 h-40 flex justify-center items-end space-x-1 z-0">
+                        <div
+                            class="w-3 h-32 bg-yellow-100 border border-gray-300 rounded-t transform -rotate-12 translate-y-4">
+                            <div class="w-full h-10 bg-red-600 rounded-t"></div>
+                        </div>
+                        <div
+                            class="w-3 h-36 bg-yellow-100 border border-gray-300 rounded-t transform -rotate-6 translate-y-2">
+                            <div class="w-full h-10 bg-red-600 rounded-t"></div>
+                        </div>
+                        <div class="w-3 h-40 bg-yellow-100 border border-gray-300 rounded-t transform rotate-0 z-10"
+                            id="lucky-stick">
+                            <div class="w-full h-10 bg-red-600 rounded-t"></div>
+                        </div>
+                        <div
+                            class="w-3 h-36 bg-yellow-100 border border-gray-300 rounded-t transform rotate-6 translate-y-2">
+                            <div class="w-full h-10 bg-red-600 rounded-t"></div>
+                        </div>
+                        <div
+                            class="w-3 h-32 bg-yellow-100 border border-gray-300 rounded-t transform rotate-12 translate-y-4">
+                            <div class="w-full h-10 bg-red-600 rounded-t"></div>
+                        </div>
+                    </div>
+
+                    <!-- Thân Ống -->
+                    <div
+                        class="relative w-40 h-56 wood-texture rounded-b-3xl rounded-t-lg shadow-2xl z-10 flex flex-col items-center overflow-hidden border-2 border-[#5C3317]">
+                        <!-- Đai đỏ -->
+                        <div
+                            class="w-full h-12 bg-[#B22222] border-b-2 border-[#800000] flex items-center justify-center shadow-md">
+                            <span class="text-yellow-400 font-chinese text-sm tracking-widest font-bold">黄大仙</span>
+                        </div>
+                        <!-- Chữ Phúc -->
+                        <div class="flex-1 flex items-center justify-center">
+                            <span class="text-7xl font-chinese text-black opacity-80 drop-shadow-md">福</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-8">
+                <button onclick="xinQue()"
+                    class="bg-yellow-500 text-red-900 px-10 py-4 rounded-full font-black text-xl hover:bg-yellow-400 transition-all shadow-[0_6px_0_rgb(180,130,0)] active:shadow-none active:translate-y-[6px] uppercase tracking-wider">
+                    Lắc Ống Xăm
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Quẻ Truyền Thống -->
+    <div id="que-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-6">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div
+            class="relative bg-white text-red-900 w-full max-w-md p-8 rounded-[2rem] border-8 border-yellow-500 text-center modal-enter shadow-2xl">
+            <div class="absolute -top-16 left-1/2 -translate-x-1/2">
+                <div
+                    class="w-6 h-32 bg-yellow-100 border-2 border-yellow-600 rounded flex flex-col items-center shadow-lg">
+                    <div class="w-full h-8 bg-red-600 rounded-t"></div>
+                    <div
+                        class="flex-1 flex items-center justify-center writing-vertical text-red-900 font-bold font-chinese py-2">
+                        Thượng Cát
+                    </div>
+                </div>
+            </div>
+
+            <h4 id="que-title" class="text-4xl font-sigka mb-4 pt-16 text-red-600">Đại Cát</h4>
+            <div class="w-16 h-1 bg-red-600 mx-auto mb-6"></div>
+            <p id="que-desc" class="text-xl font-bold leading-relaxed mb-8 italic">"Vạn sự hanh thông, cầu gì được
+                nấy..."</p>
+            <button onclick="closeModal()"
+                class="bg-red-600 text-white px-8 py-3 rounded-full font-bold hover:bg-red-700 transition shadow-lg">TẠ
+                QUẺ</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-black text-center px-6 border-t border-yellow-600/20">
+        <div class="text-3xl font-sigka text-gold mb-6">Tết Bính Ngọ 2026 & Tech Tarot</div>
+        <p class="text-xs text-gray-500 tracking-widest uppercase">&copy; 2026 Developed with Gemini</p>
+    </footer>
+
+    <script>
+        // --- Tarot Data (from mission2-main) ---
+        const tarotData = [
+            { id: 1, card_name: "The Full-Stack Magician", prediction: "Bạn đang sở hữu trọn vẹn sức mạnh để biến mọi ý tưởng thành hiện thực. Đây chính là thời điểm lý tưởng để bắt đầu một dự án mang dấu ấn của riêng bạn.", image: "assets/tarot/thefullstackmagician.png" },
+            { id: 2, card_name: "The High Bandwidth", prediction: "Trí tuệ và năng lượng của bạn đang đạt đỉnh cao. Kiến thức mới sẽ đến với bạn một cách dễ dàng và được chuyển hóa thành lợi thế.", image: "assets/tarot/thehighbandwidth.png" },
+            { id: 3, card_name: "The Zero Bug", prediction: "Những vướng mắc dần được tháo gỡ, mọi thứ trở nên rõ ràng hơn bao giờ hết. Thành công đang tiến rất gần bạn.", image: "assets/tarot/thezerobug.png" },
+            { id: 4, card_name: "The Golden Offer", prediction: "Một cơ hội giá trị về tài chính hoặc sự nghiệp sắp xuất hiện. Hãy nắm bắt thật nhanh, vì đây có thể là bước ngoặt lớn.", image: "assets/tarot/thegoldenoffer.png" },
+            { id: 5, card_name: "The System Update", prediction: "Bạn đang bước vào giai đoạn nâng cấp bản thân. Những thay đổi tích cực sẽ giúp bạn vận hành cuộc sống hiệu quả hơn.", image: "assets/tarot/thesystemupdate.png" },
+            { id: 6, card_name: "The Deep Focus", prediction: "Sự tĩnh lặng mang đến cho bạn câu trả lời. Khi bạn tập trung và lắng nghe nội tâm, giải pháp sẽ tự tìm đến.", image: "assets/tarot/thedeepfocus.png" },
+            { id: 7, card_name: "The Unicorn Startup", prediction: "Những ước mơ lớn đang được thắp sáng. Hãy dám nghĩ khác, làm khác, vì bạn đang đi đúng con đường của mình.", image: "assets/tarot/theunicornstartup.png" },
+            { id: 8, card_name: "The Resilience Debugger", prediction: "Bạn mạnh mẽ hơn bạn nghĩ. Dù thử thách xuất hiện, bạn vẫn đủ bình tĩnh và bản lĩnh để vượt qua.", image: "assets/tarot/theresiliencedebugger.png" },
+            { id: 9, card_name: "The Collaborative Cloud", prediction: "Sự kết nối sẽ mang lại sức mạnh. Khi bạn mở lòng hợp tác, thành công sẽ đến nhanh hơn.", image: "assets/tarot/thecollaborativecloud.png" },
+            { id: 10, card_name: "The Successful Deploy", prediction: "Một hành trình sắp khép lại trong sự viên mãn. Hãy tự hào về những gì bạn đã làm và sẵn sàng cho chương tiếp theo.", image: "assets/tarot/thesuccessfuldeploy.png" }
+        ];
+
+        let isDrawing = false;
+
+        function drawTarotCard() {
+            if (isDrawing) return;
+            isDrawing = true;
+
+            const cardInner = document.getElementById('card-inner');
+            const mysticFlash = document.getElementById('mystic-flash');
+            const cardImage = document.getElementById('card-image');
+            const cardName = document.getElementById('card-name');
+            const prediction = document.getElementById('prediction');
+            const drawBtn = document.getElementById('draw-btn');
+            const resultActions = document.getElementById('result-actions');
+
+            // Reset state if needed
+            cardInner.classList.remove('is-flipped');
+            if (resultActions) resultActions.classList.add('hidden');
+            if (drawBtn) drawBtn.classList.remove('hidden');
+
+            // Random card
+            const randomCard = tarotData[Math.floor(Math.random() * tarotData.length)];
+
+            setTimeout(() => {
+                // Set card image
+                cardImage.onload = () => {
+                    mysticFlash.classList.add('active');
+                    setTimeout(() => {
+                        console.log("Flipping card...");
+                        cardInner.classList.add('is-flipped');
+                        // Update text
+                        if (cardName) cardName.innerText = randomCard.card_name;
+                        if (prediction) prediction.innerText = randomCard.prediction;
+
+                        // Switch buttons
+                        if (drawBtn) drawBtn.classList.add('hidden');
+                        if (resultActions) {
+                            resultActions.classList.remove('hidden');
+                            resultActions.classList.add('flex');
+                        }
+
+                        isDrawing = false;
+                        mysticFlash.classList.remove('active');
+                    }, 500);
+                };
+                cardImage.src = randomCard.image;
+            }, 800);
+        }
+
+        function shareFacebook() {
+            const captureTarget = document.querySelector('#tarot-content');
+            if (!captureTarget) return;
+
+            if (typeof htmlToImage === 'undefined') {
+                alert("Đang tải thư viện xử lý ảnh... Vui lòng thử lại sau giây lát!");
+                return;
+            }
+
+            // Using html-to-image which supports modern CSS (Tailwind v4 oklch colors)
+            htmlToImage.toPng(captureTarget, {
+                backgroundColor: '#8a0000', // Festive Red Background
+                pixelRatio: 2
+            })
+                .then(function (dataUrl) {
+                    // 1. Download
+                    const link = document.createElement('a');
+                    link.download = 'Que-Tet-Binh-Ngo-2026.png';
+                    link.href = dataUrl;
+                    link.click();
+
+                    // 2. Caption
+                    const caption = "Mình đã tham gia gieo quẻ đầu năm cùng Tech Tarot 2026! Hãy cùng xem quẻ của mình có gì nhé!! #TetBinhNgo #TechTarot #GieoQueCongNghe";
+                    navigator.clipboard.writeText(caption).then(() => {
+                        alert("Đã lưu ảnh và copy caption thành công! Bạn hãy dán vào Facebook nhé.");
+                    }).catch(() => {
+                        alert("Đã lưu ảnh về máy! Hãy chia sẻ lên Facebook nhé.");
+                    });
+
+                    // 3. Share Dialog
+                    const currentUrl = encodeURIComponent(window.location.href);
+                    window.open('https://www.facebook.com/sharer/sharer.php?u=' + currentUrl, '_blank');
+                })
+                .catch(function (error) {
+                    console.error('Capture failed:', error);
+                    alert("Lỗi khi tạo ảnh: " + error.message);
+                });
+        }
+
+
+        // --- Countdown Logic ---
+        const tetDate = new Date('February 17, 2026 00:00:00').getTime();
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const gap = tetDate - now;
+            const second = 1000, minute = second * 60, hour = minute * 60, day = hour * 24;
+            const d = Math.floor(gap / day), h = Math.floor((gap % day) / hour), m = Math.floor((gap % hour) / minute), s = Math.floor((gap % minute) / second);
+            document.getElementById('days').innerText = d < 10 ? '0' + d : d;
+            document.getElementById('hours').innerText = h < 10 ? '0' + h : h;
+            document.getElementById('minutes').innerText = m < 10 ? '0' + m : m;
+            document.getElementById('seconds').innerText = s < 10 ? '0' + s : s;
+        };
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // --- Petal Animation ---
+        const petalContainer = document.getElementById('petal-container');
+        const petalColors = ['#ffd700', '#ffcc00', '#ffb3ba', '#ffdfba'];
+        setInterval(() => {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            const size = Math.random() * 10 + 10 + 'px';
+            petal.style.width = size; petal.style.height = size;
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.backgroundColor = petalColors[Math.floor(Math.random() * petalColors.length)];
+            petal.style.animationDuration = Math.random() * 3 + 2 + 's';
+            petal.style.opacity = Math.random();
+            petalContainer.appendChild(petal);
+            setTimeout(() => petal.remove(), 5000);
+        }, 300);
+
+        // --- Music Player Logic ---
+        const audio = document.getElementById('bg-music');
+        const musicDisc = document.getElementById('music-disc');
+        const musicIcon = document.getElementById('music-icon');
+
+        function toggleMusic() {
+            // Case 1: Playing but Muted -> Unmute
+            if (!audio.paused && audio.muted) {
+                audio.muted = false;
+                musicIcon.innerText = '🎵';
+            }
+            // Case 2: Playing and Sound On -> Pause
+            else if (!audio.paused && !audio.muted) {
+                audio.pause();
+                musicDisc.classList.add('music-paused');
+                musicIcon.innerText = '🔇';
+            }
+            // Case 3: Paused -> Play (Unmuted)
+            else {
+                audio.muted = false;
+                audio.play().then(() => {
+                    musicDisc.classList.remove('music-paused');
+                    musicIcon.innerText = '🎵';
+                }).catch(err => console.error("Play failed:", err));
+            }
+        }
+
+        // Robust Autoplay Logic
+        window.addEventListener('load', () => {
+            audio.volume = 0.5;
+
+            // 1. Try to play unmuted (The 'Hat Luon' wish)
+            audio.play().then(() => {
+                // Success! (Rare in modern browsers without interaction)
+                musicDisc.classList.remove('music-paused');
+                musicIcon.innerText = '🎵';
+            }).catch(() => {
+                // 2. Play Muted Fallback (So it 'Starts' as requested)
+                console.log("Autoplay unmuted blocked. Playing muted.");
+                audio.muted = true;
+                audio.play().then(() => {
+                    musicDisc.classList.remove('music-paused');
+                    musicIcon.innerText = '🔇';
+                });
+
+                // 3. Unmute on First Click (Seamless transition)
+                document.addEventListener('click', function unlockAudio() {
+                    if (audio.muted) {
+                        audio.muted = false;
+                        musicIcon.innerText = '🎵';
+                        // Retry play if it was paused
+                        if (audio.paused) audio.play();
+                    }
+                    document.removeEventListener('click', unlockAudio);
+                }, { once: true });
+            });
+        });
+
+
+        // --- Fortune (Xin Quẻ) Logic ---
+        const danhSachQue = [
+            // --- Đại Cát (10) ---
+            { title: "Đại Cát", desc: "Thời lai vận khứ, vạn sự hanh thông. Công danh rộng mở, tài lộc dồi dào." },
+            { title: "Đại Cát", desc: "Rồng mây gặp hội, cá chép hóa long. Mọi việc dự định đều thành công rực rỡ." },
+            { title: "Đại Cát", desc: "Phúc lộc song toàn, gia đạo bình an. Quý nhân phù trợ, gặp dữ hóa lành." },
+            { title: "Đại Cát", desc: "Nắng ấm xuân sang, hoa nở đầy cành. Tình duyên phơi phới, hỷ sự lâm môn." },
+            { title: "Đại Cát", desc: "Cầu được ước thấy, vạn sự như ý. Sự nghiệp thăng tiến, tiền tài dư dả." },
+            { title: "Đại Cát", desc: "Đức năng thắng số, phước lộc tràn đầy. Làm đâu thắng đó, vạn sự cát tường." },
+            { title: "Đại Cát", desc: "Thiên thời địa lợi, nhân hòa đủ đầy. Cơ hội hiếm có, nắm bắt thành công." },
+            { title: "Đại Cát", desc: "Vận khí đang lên, như diều gặp gió. Sức khỏe dồi dào, tâm trí an vui." },
+            { title: "Đại Cát", desc: "Khổ tận cam lai, sau cơn mưa trời lại sáng. Thành quả ngọt ngào đang chờ đón." },
+            { title: "Đại Cát", desc: "Gia môn hưng thịnh, con cháu thảo hiền. Tuổi già an lạc, vạn sự viên mãn." },
+
+            // --- Thượng Cát (10) ---
+            { title: "Thượng Cát", desc: "Quý nhân chỉ lối, may mắn kề bên. Khó khăn lùi bước, thuận lợi ùa về." },
+            { title: "Thượng Cát", desc: "Công việc thuận buồm xuôi gió. Kinh doanh phát đạt, lợi nhuận tăng cao." },
+            { title: "Thượng Cát", desc: "Tình cảm mặn nồng, gia đình hòa thuận. Tin vui từ xa, phúc lộc đưa tới." },
+            { title: "Thượng Cát", desc: "Sức khỏe dồi dào, tinh thần phấn chấn. Mọi lo toan tan biến, an nhiên tự tại." },
+            { title: "Thượng Cát", desc: "Học hành tấn tới, thi cử đỗ đạt. Bảng vàng đề tên, rạng danh gia tộc." },
+            { title: "Thượng Cát", desc: "Mở rộng mối quan hệ, gặp người tâm đầu ý hợp. Hợp tác thành công, đôi bên cùng có lợi." },
+            { title: "Thượng Cát", desc: "Tài lộc gõ cửa, tiền vào như nước. Chi tiêu thoải mái, không lo túng thiếu." },
+            { title: "Thượng Cát", desc: "Đi xa có lợi, xuất hành bình an. Khám phá chân trời mới, mở mang tầm mắt." },
+            { title: "Thượng Cát", desc: "Giải quyết được vướng mắc cũ. Tâm tư nhẹ nhõm, đón chào điều mới mẻ." },
+            { title: "Thượng Cát", desc: "Được mọi người yêu mến, kính trọng. Uy tín tăng cao, tiếng lành đồn xa." },
+
+            // --- Trung Cát (10) ---
+            { title: "Trung Cát", desc: "Bình an là phúc, biết đủ là vui. Cuộc sống êm đềm, không sóng gió." },
+            { title: "Trung Cát", desc: "Cần cù bù thông minh. Nỗ lực hết mình, ắt có thành quả xứng đáng." },
+            { title: "Trung Cát", desc: "Giữ vững lập trường, không dao động. Kiên nhẫn chờ thời, cơ hội sẽ đến." },
+            { title: "Trung Cát", desc: "Tình cảm bình ổn, cần vun đắp thêm. Quan tâm chia sẻ, gắn kết yêu thương." },
+            { title: "Trung Cát", desc: "Tài chính ổn định, thu chi cân đối. Tiết kiệm phòng thân, tích tiểu thành đại." },
+            { title: "Trung Cát", desc: "Sức khỏe bình thường, chú ý rèn luyện. Ăn uống điều độ, ngủ nghỉ đúng giờ." },
+            { title: "Trung Cát", desc: "Công việc đều đều, không có biến động lớn. Duy trì phong độ, chờ ngày bứt phá." },
+            { title: "Trung Cát", desc: "Các mối quan hệ xã giao tốt đẹp. Dĩ hòa vi quý, tránh xa thị phi." },
+            { title: "Trung Cát", desc: "Đề phòng tiểu nhân, cẩn trọng lời nói. Sống ngay thẳng, không sợ gièm pha." },
+            { title: "Trung Cát", desc: "Mọi việc diễn ra theo kế hoạch. Không quá vội vàng, cứ từ từ mà tiến." },
+
+            // --- Tiểu Cát (10) ---
+            { title: "Tiểu Cát", desc: "Niềm vui nho nhỏ, hạnh phúc đơn sơ. Một món quà bất ngờ, một lời khen ngợi." },
+            { title: "Tiểu Cát", desc: "Gặp lại bạn cũ, ôn chuyện xưa. Kỷ niệm ùa về, lòng thấy ấm áp." },
+            { title: "Tiểu Cát", desc: "Giải quyết được một vấn đề nhỏ. Bớt đi lo âu, thêm phần thư thái." },
+            { title: "Tiểu Cát", desc: "Có chút lộc ăn, được mời dự tiệc. Tinh thần thoải mái, vui vẻ sum vầy." },
+            { title: "Tiểu Cát", desc: "Tìm thấy đồ vật đã mất. May mắn mỉm cười, niềm vui bất chợt." },
+            { title: "Tiểu Cát", desc: "Được người khác giúp đỡ việc vặt. Cảm thấy biết ơn, cuộc sống dễ chịu." },
+            { title: "Tiểu Cát", desc: "Ý tưởng mới nhen nhóm. Ghi chép lại ngay, có ngày dùng đến." },
+            { title: "Tiểu Cát", desc: "Hoàn thành một mục tiêu nhỏ. Tự thưởng cho mình, khích lệ tinh thần." },
+            { title: "Tiểu Cát", desc: "Một ngày trôi qua nhẹ nhàng. Không có áp lực, tận hưởng bình yên." },
+            { title: "Tiểu Cát", desc: "Giấc ngủ ngon, mơ đẹp. Thức dậy sảng khoái, tràn đầy năng lượng." }
+        ];
+
+        let isShaking = false;
+
+        function xinQue() {
+            if (isShaking) return;
+            isShaking = true;
+
+            const shaker = document.getElementById('shaker');
+            const stick = document.getElementById('lucky-stick');
+
+            shaker.classList.add('shake-hard');
+
+            setTimeout(() => {
+                shaker.classList.remove('shake-hard');
+
+                stick.style.transition = "transform 0.5s ease-out";
+                stick.style.transform = "translateY(-40px)";
+
+                setTimeout(() => {
+                    const randomQue = danhSachQue[Math.floor(Math.random() * danhSachQue.length)];
+                    document.getElementById('que-title').innerText = randomQue.title;
+                    document.getElementById('que-desc').innerText = randomQue.desc;
+                    // Update the text on the visual stick inside the modal
+                    const stickText = document.querySelector('#que-modal .writing-vertical');
+                    if (stickText) stickText.innerText = randomQue.title;
+
+                    document.getElementById('que-modal').classList.remove('hidden');
+
+                    stick.style.transition = "none";
+                    stick.style.transform = "rotate(0)";
+                    isShaking = false;
+                }, 600);
+            }, 1000);
+        }
+
+        function closeModal() {
+            document.getElementById('que-modal').classList.add('hidden');
+        }
+    </script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js"></script>
+</body>
+
+</html>
